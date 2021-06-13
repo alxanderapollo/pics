@@ -11,12 +11,22 @@ class SearchBar extends React.Component {
     //binds the value
     onFormSubmit = (event) => {
         event.preventDefault();
+        //the value of this will make sure that it is always equal to the
+        //instnace of search bar
         console.log(this.state.term)
+
+        // to refrence the function that was passed as props
+        //onSubmit refrneces the function that was passed
+        //and to refrence that here we write this.props.onSubmit 
+        this.props.onSubmit(this.state.term)
     }
 
     render() {
         return (
         <div className="us segment"> 
+        {/* passes a refrence to the onformSubmit function
+        we have to call it onForm submit becasue that is required by form components  */}
+         
             <form onSubmit={this.onFormSubmit} className="ui form">
                 <div className="field">
                     <label>Image Search</label>
