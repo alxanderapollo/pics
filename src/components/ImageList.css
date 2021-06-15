@@ -1,0 +1,14 @@
+.image-list{
+    /*  */
+    display:grid;
+       /*  grid-template-columns creates a set number of colms, autofill  automatically decides how many columns to insert, min max each one of the colums are 250 px wide, 1fr means they are all equally sized  */
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+     /* puts a small gap between each grid */
+    grid-gap: 10px;
+    /* approximates how tall each row is going to be */
+    grid-auto-rows: 250px;
+}
+.image-list img{
+    width: 250px;
+    grid-row-end: span 3;
+}

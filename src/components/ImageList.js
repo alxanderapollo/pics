@@ -1,14 +1,17 @@
+import './ImageList.css'; //import our css
+import ImageCard from './ImageCard';
 import React from 'react';
 
 //passing a list if images
 const ImageList = props => {
     //we are destructing the json object by making description, id and urls
-   const images  = props.images.map(({description,id,urls}) =>{
+   const images  = props.images.map((image) =>{
     //    Each image has an id, in this case map is taking the id that is sent with the accompaning image and indexing it 
     //react requires an alt property with an image thats why we are getting warnings isnce the images come with a description we can use those
-       return<img alt={description} key= {id} src ={urls.regular}/>
+    //passing image card as a prop
+       return<ImageCard key= {image.id} image={image}/>
    });
-    return <div>{images}</div>
+    return <div className="image-list ">{images}</div>
     
 }
 export default ImageList;
