@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import unsplash from '../API/unsplash'; //lib for helping us manage requests to an api 
+import unsplash from '../api/unsplash'; //lib for helping us manage requests to an api 
+import ImageList from './ImageList';
 //changed from functional component App to a class component
 class App extends React.Component{
 
@@ -22,20 +23,19 @@ class App extends React.Component{
         //the second is an object  that will have a bunch of options that will allow us to customize what we want
         //hhhtppp is the wbsite where the information will come from
         //search/photos is the end point 
-        const response = await unsplash.get('search/photos',{
+        const response = await unsplash.get('/search/photos',{
             //1. Identify ourselves With an Authorization key using a headers object and send a query params to search for items
             params: {query:term},
            
             //.then function will be chained on and be called at some point in the future 
-        })
+        });
         // .then((response) =>{
         //     //reponse.results.data will give us all the car data
         //     console.log(response.data.results);
         // })
         //set our state with all the images as a result
-        this.setState({images: response.data.results})
-    }
-
+        this.setState({images:response.data.results})
+    };
     render(){
     return (
         <div className="ui container" style={{marginTop:'10px'}}>
@@ -43,7 +43,7 @@ class App extends React.Component{
             we dont need to name it that, properties or props can be named anything we like */}
             <SearchBar onSubmit = {this.onSearchSubmit} />
             {/* print the number of images */}
-            Found: {this.state.images.length} images
+            <ImageList images = {this.state.images}/>
         </div>
     );
     }
