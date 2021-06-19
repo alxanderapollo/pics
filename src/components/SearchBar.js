@@ -1,23 +1,17 @@
 import React from 'react';
-// this component is a state because, at some point 
-//we have to use state 
+
 class SearchBar extends React.Component {
+
+    //term is the value that is contained within the search bar
     state = {term:'Enter a Search here'};
-
-    //keeps the form from refreshing everytime the user hits enter on the 
-    //search bar, preventDefault() prevents the page from being refreshed 
-    //everytime we git enter 
-
-    //binds the value
+    //onFormSubmite takes an event as a prop, 
     onFormSubmit = (event) => {
+        //prevents the page from being refreshed when a user enters a value in the search bar
         event.preventDefault();
-        //the value of this will make sure that it is always equal to the
-        //instnace of search bar
-        //console.log(this.state.term)
-
-        // to refrence the function that was passed as props
-        //onSubmit refrneces the function that was passed
-        //and to refrence that here we write this.props.onSubmit 
+       
+        // For the callback function that was passed as props  we write this.props to access it and onSubmit, can be named anything but to make it obvouis that 
+        //the call back function that was passed is the same as the call back function sent as props form the hirearchy
+        // and of course what is being sent back up is  the userinput
         this.props.onSubmit(this.state.term)
     };
 
@@ -26,7 +20,6 @@ class SearchBar extends React.Component {
         <div className="ui segment"> 
         {/* passes a refrence to the onformSubmit function
         we have to call it onForm submit becasue that is required by form components  */}
-         
             <form onSubmit={this.onFormSubmit} className="ui form">
                 <div className="field">
                     <label>Image Search</label>
@@ -36,6 +29,7 @@ class SearchBar extends React.Component {
                     <input 
                         type="text" 
                         value={this.state.term} 
+                        //  to access the value inside of the event since we are passing back its e.target.value
                         onChange={(e) => this.setState({term:e.target.value})}/> 
                 </div>
             </form>

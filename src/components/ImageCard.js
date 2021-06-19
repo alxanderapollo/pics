@@ -7,10 +7,9 @@ class  ImageCard extends React.Component {
         this.imageRef = React.createRef(); //always initlized in the constructor, and to wire it we pass it as a prop to the desired element 
         this.state = {spans:0} //spans initlized and set to 0
     }
-    //life cylce method
+    //life cylce method - waits on a function 
     componentDidMount(){
       // call back function to return the hight of an image
-      //
       this.imageRef.current.addEventListener('load',this.setSpans); 
     }
 
@@ -25,16 +24,15 @@ class  ImageCard extends React.Component {
     }
 
     render() {
-        //destructing description and urls
+        //destructing description, description will be the alt, 
         const {description,urls} = this.props.image;
         return (
-            // is spaning 
+            // passing the span as its being created into the grid-row-end:style
         <div style={{gridRowEnd:`span ${this.state.spans}`}}>
-            {/* getting props and displaying the description  */}
+            {/*Image Ref is wired up to the prop by passing it as individual property getting props and displaying the description  */}
             <img ref= {this.imageRef} alt={description}
-            // reciving image and displaying it it
+            // reciving image and displaying it
             src={urls.regular}
-            
             />
         </div>);
     }

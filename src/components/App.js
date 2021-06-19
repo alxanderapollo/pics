@@ -1,3 +1,23 @@
+//How this program works
+//1. Class app is made into a React component where a state is initlized as an array of empty images. Unsplash is a internet resource that will be used 
+//as an internet api. Since react has a component Hirearchy, We want to create a Search bar component that will contain an onFormSubmit event
+// 2. Search bar will recieve onSearchSubmit, which is a call back function uses the Async keyward and away, which is specical kind of function that,
+//dynamically updates itself based on the  ( timed) response returned.But before the Search bar reives anything, the function goes into the 
+//unsplash API gets our authorization key as well as the url extension and appends /search/photos, this is our data end point
+//after that async/await is cleard whatever is passed back up through the onsearch submit will be our state value
+//3. by this point our state class obj images, has the searched results requested by the user, It is then passed into the 
+//Image List component where it is picked apart by a map using the JSON image id, the map uses each image id and maps it to an image
+//which is then sent as key value pair to the Image Card Component. 
+//4. The Image Card Component is also a  class component, it uses the lifeCycle method, the purpose of this class component
+// is take an image, reference it by way of dom and get the hight of each individual image, and then with that information set the correct spans for each 
+//image so that no one image bleeds onto one another and/or contains too much white space.  the constructor initlizes the image ref and a state for a spans param of 0
+//componentDidMount takes the current image loads the current image when the spans has been set for that particular image
+//set spans is exactly as it sounds, an arrow function that takes no param, creates a hiegh var and is sent to the height of the current image, 
+//another var called spans takes height and uses math.ceil and deived it by 10px finally spans is set to the number taken once we've recived the correct span param 
+
+//
+
+
 import React from 'react';
 import SearchBar from './SearchBar';
 import unsplash from '../api/unsplash'; //lib for helping us manage requests to an api 
